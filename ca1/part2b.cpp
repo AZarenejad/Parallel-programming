@@ -3,7 +3,7 @@
 
 
 typedef union {
-	__m128 			float128;
+	__m128 		float128;
 	
 	float		sp[4];
 } floatVec;
@@ -30,8 +30,8 @@ int main()
 {
     __m128 a;
     __m128 b;
-
-	a = _mm_load_ps((const float*)floatArray1);
+    
+    a = _mm_load_ps((const float*)floatArray1);
     b = _mm_load_ps(floatArray);
 
     print_spfp_vector(a);
