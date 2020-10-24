@@ -1,5 +1,7 @@
 #include "stdio.h"
 #include "x86intrin.h"
+#include "string"
+using namespace std;
 
 typedef union {
 	__m128i 			int128;
@@ -9,10 +11,18 @@ typedef union {
 
 	unsigned short		m128_u16[8];
 	signed short		m128_i16[8];
+
+	unsigned int		m128_u32[4];
+	signed int			m128_i32[4];
+
+	unsigned long long	m128_u64[2];
+	signed long long	m128_i64[2];
+
 } intVec;
 
 void print_u8 (__m128i a)
 {
+	printf ("Unsigned byte: ");
 	intVec tmp;
 	tmp.int128 = a;
 	printf ("[");
@@ -24,6 +34,7 @@ void print_u8 (__m128i a)
 
 void print_u16 (__m128i a)
 {
+	printf ("Unsigned word: ");
 	intVec tmp;
 	tmp.int128 = a;
 	printf ("[");
@@ -31,6 +42,42 @@ void print_u16 (__m128i a)
 		printf ("%X, ", tmp.m128_u16[i]);
 	}
 	printf ("%X]\n\n", tmp.m128_u16[0]);
+}
+
+void print_u32 (__m128i a)
+{
+	intVec tmp;
+	tmp.int128 = a;
+	printf ("[");
+	for (int i=3; i>0; i--) {
+		printf ("%X, ", tmp.m128_u32[i]);
+	}
+	printf ("%X]\n\n", tmp.m128_u32[0]);
+}
+
+void print_u64 (__m128i a)
+{
+	intVec tmp;
+	tmp.int128 = a;
+	printf ("[");
+	for (int i=1; i>0; i--) {
+		printf ("%X, ", tmp.m128_u64[i]);
+	}
+	printf ("%X]\n\n", tmp.m128_u64[0]);
+}
+
+
+
+void print_int_vector(__m128i a, string type)
+{
+	if(type == "u8")
+		print_u8(a);
+	else if(type == "u16")
+		print_u16(a);
+	else if(type == "u32")
+		print_u32(a);
+	else if(type == "u64")
+		print_u64(a);
 }
 
 
@@ -42,11 +89,13 @@ int main(void)
 	__m128i a;
 	a = _mm_load_si128((const __m128i*)intArray);
 
-	printf ("Unsigned byte: ");
-	print_u8 (a);
+	print_int_vector (a , "u8");
 
-	printf ("Unsigned word: ");
-	print_u16 (a);
+	print_int_vector (a , "u16");
+
+	print_int_vector(a, "u32");
+
+	print_int_vector(a, "u64");
 	
 
 	return 0;
