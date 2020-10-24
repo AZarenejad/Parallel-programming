@@ -63,9 +63,9 @@ void print_u64 (__m128i a)
 	tmp.int128 = a;
 	printf ("[");
 	for (int i=1; i>0; i--) {
-		printf ("%X, ", tmp.m128_u64[i]);
+		printf ("%llX, ", tmp.m128_u64[i]);
 	}
-	printf ("%X]\n\n", tmp.m128_u64[0]);
+	printf ("%llX]\n\n", tmp.m128_u64[0]);
 }
 
 
@@ -112,9 +112,9 @@ void print_i64 (__m128i a)
 	tmp.int128 = a;
 	printf ("[");
 	for (int i=1; i>0; i--) {
-		printf ("%d, ", tmp.m128_i64[i]);
+		printf ("%lld, ", tmp.m128_i64[i]);
 	}
-	printf ("%d]\n\n", tmp.m128_i64[0]);
+	printf ("%lld]\n\n", tmp.m128_i64[0]);
 }
 
 
