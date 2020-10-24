@@ -52,7 +52,7 @@ int main(void)
 
 	printf("###############  Group Members ##################\n\tAlireza Zarenejad:810196474\n\tMoein Shafi:\n###############  Group Members ##################\n\n");
 
-	system("grep -rn -m1  'model name' /proc/cpuinfo");
+	system("grep -r -m1  'model name' /proc/cpuinfo");
 	printf("%s\n", MMX   ? "MMX   Supported" : "MMX   NOT Supported");
 	printf("%s\n", SSE   ? "SSE   Supported" : "SSE   NOT Supported");
 	printf("%s\n", SSE2  ? "SSE2  Supported" : "SSE2  NOT Supported");

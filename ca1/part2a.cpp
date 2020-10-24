@@ -20,6 +20,7 @@ typedef union {
 
 } intVec;
 
+
 void print_u8 (__m128i a)
 {
 	printf ("Unsigned byte: ");
@@ -142,19 +143,18 @@ void print_int_vector(__m128i a, string type)
 	
 }
 
-
-
-void print_spfp_vector(__m128 a)
-{
-}
-
 unsigned char intArray [16] = {	0X00, 0X11, 0X22, 0X33, 0X44, 0X55, 0X66, 0X77,
 								0X88, 0X99, 0XAA, 0XBB, 0XCC, 0XDD, 0XEE, 0XFF};
+								
 
 int main(void)
 {
 	__m128i a;
 	a = _mm_load_si128((const __m128i*)intArray);
+
+	__m128 b;
+
+	b = _mm_load_ps((const float*)intArray);
 
 	print_int_vector (a , "u8");
 
