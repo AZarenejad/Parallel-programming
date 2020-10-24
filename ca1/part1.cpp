@@ -49,6 +49,8 @@ int main(void)
 		SHA    = (info[1] & ((int)1 << 29)) != 0;
 	}
 
+	printf("###############  Group Members ##################\n\tAlireza Zarenejad:810196474\n\tMoein Shafi:\n###############  Group Members ##################\n\n");
+
 	printf("%s\n", MMX   ? "MMX   Supported" : "MMX   NOT Supported");
 	printf("%s\n", SSE   ? "SSE   Supported" : "SSE   NOT Supported");
 	printf("%s\n", SSE2  ? "SSE2  Supported" : "SSE2  NOT Supported");
