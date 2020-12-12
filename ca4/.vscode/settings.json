@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "limits": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "array": "cpp"
     }
 }

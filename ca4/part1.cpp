@@ -8,9 +8,9 @@
 
 #define VECTOR_SIZE	1048576
 
-// #define VECTOR_SIZE	20
-
 __attribute__((aligned(16))) float random_array[VECTOR_SIZE];
+
+
 
 void print_student_info() {
     printf("******************************************************\n");
@@ -95,18 +95,15 @@ long opm_critical_max(float* array)
 {   
 	Ipp64u start, end;
 	int omp_critical_duration;
-
 	start = ippGetCpuClocks();
 	float max_value = array[0];
 	long max_index = 0;
 	float max_value_local;
 	long max_index_local;
-
 	#pragma omp parallel num_threads(2) shared(array, max_value, max_index) private(max_value_local, max_index_local)
 	{
 		max_value_local = FLT_MIN;
 		max_index_local = -1;
-
 		#pragma omp for nowait
 		for (long i = 0; i < VECTOR_SIZE; i++){
 			if (array[i] > max_value_local){
@@ -114,7 +111,6 @@ long opm_critical_max(float* array)
 				max_index_local = i;
 			}
 		}
-
 		#pragma omp critical
 		{
 			if(max_value_local > max_value){
@@ -123,14 +119,10 @@ long opm_critical_max(float* array)
 			}
 		}
 	}
-
 	end = ippGetCpuClocks();
     omp_critical_duration = (Ipp32s)(end - start);
-
-
 	printf("Find Max with omp crttical:	Max value = %f,  Index = %ld, Run time = %d\n", max_value, max_index, omp_critical_duration);
     return omp_critical_duration;
-
 }
 
 
